@@ -3,7 +3,11 @@
 
 ## 介绍
 
-- https://kexue.fm/archives/9052
+- GAU-α：https://kexue.fm/archives/9052
+- GAU：https://kexue.fm/archives/8934
+- 原始论文：https://arxiv.org/abs/2202.10447
+
+## 评测
 
 ### CLUE榜单分类任务结果
 
