@@ -159,10 +159,10 @@ class Evaluator(keras.callbacks.Callback):
     """训练回调
     """
     def on_epoch_end(self, epoch, logs=None):
-        model.save_weights('roformer.v3.weights', save_format='h5')
+        model.save_weights('GAU.alpha.weights', save_format='h5')
         if (epoch + 1) % 100 == 0:
             model.save_weights(
-                'roformer.v3.%s.weights' % (epoch + 1), save_format='h5'
+                'GAU.alpha.%s.weights' % (epoch + 1), save_format='h5'
             )
 
 
@@ -184,4 +184,4 @@ if __name__ == '__main__':
 
 else:
 
-    model.load_weights('roformer.v3.weights')
+    model.load_weights('GAU.alpha.weights')
