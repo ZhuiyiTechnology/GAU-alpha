@@ -120,14 +120,14 @@ strategy = tf.distribute.MirroredStrategy()
 
 with strategy.scope():
 
-    bert = build_transformer_model(
+    base = build_transformer_model(
         config_path,
         checkpoint_path=None,
         model=GAU_alpha,
         with_mlm='linear',
         return_keras_model=False
     )
-    model = bert.model
+    model = base.model
 
     # 训练用模型
     y_in = keras.layers.Input(shape=(None,), name='Input-Label')
