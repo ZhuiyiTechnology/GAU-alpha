@@ -31,7 +31,7 @@
 
 ## 使用
 
-需要bert4keras>=0.11.2。参考代码：
+需要bert4keras>=0.11.3。参考代码：
 ```python
 from bert4keras.models import build_transformer_model
 from models import GAU_alpha
