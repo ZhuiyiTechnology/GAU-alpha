@@ -1,5 +1,6 @@
 #! -*- coding: utf-8 -*-
 # GAU-α 模型实现
+import bert4keras
 from bert4keras.models import *
 
 
@@ -71,15 +72,27 @@ class GAU_alpha(RoFormerV2):
 
         for i in range(self.num_hidden_layers):
             prefix = 'GAU_alpha/encoder/layer_%d/' % i
-            mapping['Transformer-%d-GatedAttentionUnit' % i] = [
-                prefix + 'gau/i_dense/kernel',
-                # prefix + 'gau/i_dense/bias',
-                prefix + 'gau/o_dense/kernel',
-                # prefix + 'gau/o_dense/bias',
-                # prefix + 'gau/q_scaleoffset/beta',
-                prefix + 'gau/q_scaleoffset/gamma',
-                # prefix + 'gau/k_scaleoffset/beta',
-                prefix + 'gau/k_scaleoffset/gamma',
-            ]
+            if bert4keras.__version__ >= '0.10.4':
+                mapping['Transformer-%d-GatedAttentionUnit' % i] = [
+                    prefix + 'gau/i_dense/kernel',
+                    # prefix + 'gau/i_dense/bias',
+                    # prefix + 'gau/q_scaleoffset/beta',
+                    prefix + 'gau/q_scaleoffset/gamma',
+                    # prefix + 'gau/k_scaleoffset/beta',
+                    prefix + 'gau/k_scaleoffset/gamma',
+                    prefix + 'gau/o_dense/kernel',
+                    # prefix + 'gau/o_dense/bias',
+                ]
+            else:
+                mapping['Transformer-%d-GatedAttentionUnit' % i] = [
+                    prefix + 'gau/i_dense/kernel',
+                    # prefix + 'gau/i_dense/bias',
+                    prefix + 'gau/o_dense/kernel',
+                    # prefix + 'gau/o_dense/bias',
+                    # prefix + 'gau/q_scaleoffset/beta',
+                    prefix + 'gau/q_scaleoffset/gamma',
+                    # prefix + 'gau/k_scaleoffset/beta',
+                    prefix + 'gau/k_scaleoffset/gamma',
+                ]
 
         return mapping
